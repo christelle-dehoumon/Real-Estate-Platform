@@ -1,12 +1,11 @@
-import { Suspense } from 'react';
-import ChatPageContent from './ChatPageContent';
+"use client";
+import dynamic from 'next/dynamic';
 
-export const dynamic = 'force-dynamic';
+const ChatPageContent = dynamic(() => import('./ChatPageContent'), {
+  ssr: false,
+  loading: () => <div>Chargement...</div>
+});
 
 export default function ChatPage() {
-  return (
-    <Suspense fallback={<div>Chargement...</div>}>
-      <ChatPageContent />
-    </Suspense>
-  );
+  return <ChatPageContent />;
 }
