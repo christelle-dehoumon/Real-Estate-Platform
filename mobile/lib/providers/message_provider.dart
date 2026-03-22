@@ -22,18 +22,21 @@ class MessageState {
   }
 }
 
-final messagesProvider = StateNotifierProvider<MessageNotifier, MessageState>((
-  ref,
-) {
-  return MessageNotifier(ref);
-});
+final messagesProvider = NotifierProvider<MessageNotifier, MessageState>(
+  MessageNotifier.new,
+);
 
-class MessageNotifier extends StateNotifier<MessageState> {
-  final Ref _ref;
+class MessageNotifier extends Notifier<MessageState> {
+  @override
+  MessageState build() {
+    // IMPORTANT: state is not available until build returns.
+    // Schedule async work after initialization to avoid "uninitialized provider".
+    Future.microtask(() async {
+      await fetchMessages();
+      await fetchUnreadCount();
+    });
 
-  MessageNotifier(this._ref) : super(MessageState()) {
-    fetchMessages();
-    fetchUnreadCount();
+    return MessageState();
   }
 
   Future<void> fetchMessages() async {
@@ -42,7 +45,7 @@ class MessageNotifier extends StateNotifier<MessageState> {
     }
 
     try {
-      final apiService = _ref.read(apiServiceProvider);
+      final apiService = ref.read(apiServiceProvider);
       final response = await apiService.get('/messages');
       final dynamic raw = response.data;
       if (raw == null || raw is! List) {
@@ -62,7 +65,7 @@ class MessageNotifier extends StateNotifier<MessageState> {
 
   Future<void> fetchUnreadCount() async {
     try {
-      final apiService = _ref.read(apiServiceProvider);
+      final apiService = ref.read(apiServiceProvider);
       final response = await apiService.get('/messages/unread-count');
       final count = response.data['unreadCount'] ?? 0;
       state = state.copyWith(unreadCount: count);
@@ -73,7 +76,7 @@ class MessageNotifier extends StateNotifier<MessageState> {
 
   Future<void> markConversationAsRead(String otherUserId) async {
     try {
-      final apiService = _ref.read(apiServiceProvider);
+      final apiService = ref.read(apiServiceProvider);
       await apiService.post(
         '/messages/mark-read',
         data: {'otherUserId': otherUserId},
@@ -90,7 +93,7 @@ class MessageNotifier extends StateNotifier<MessageState> {
     String? propertyId,
   }) async {
     try {
-      final apiService = _ref.read(apiServiceProvider);
+      final apiService = ref.read(apiServiceProvider);
       final response = await apiService.post(
         '/messages',
         data: {

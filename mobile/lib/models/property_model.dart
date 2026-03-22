@@ -105,6 +105,14 @@ class PropertyModel {
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) {
+    // Keep URLs environment-agnostic: backend returns relative `/uploads/...`.
+    // For web we use localhost by default; override with `--dart-define=API_BASE_URL=...`.
+    const apiBaseUrl = String.fromEnvironment(
+      'API_BASE_URL',
+      defaultValue: 'http://localhost:5000/api',
+    );
+    final uploadsBaseUrl = apiBaseUrl.replaceFirst(RegExp(r'/api/?$'), '');
+
     return PropertyModel(
       id: json['_id'] ?? json['id'],
       title: json['title'],
@@ -116,7 +124,9 @@ class PropertyModel {
       propertyType: json['propertyType'],
       location: PropertyLocation.fromJson(json['location']),
       features: PropertyFeatures.fromJson(json['features']),
-      images: List<String>.from(json['images'] ?? []).map((img) => 'http://192.168.100.223:5000$img').toList(),
+      images: List<String>.from(json['images'] ?? [])
+          .map((img) => '$uploadsBaseUrl$img')
+          .toList(),
       ownerId: json['owner']?['_id'] ?? json['owner'] ?? '',
       ownerName: json['owner']?['name'] ?? '',
       status: _parseStatus(json['status']),

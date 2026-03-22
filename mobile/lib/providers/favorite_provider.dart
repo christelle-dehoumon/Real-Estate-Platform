@@ -2,39 +2,45 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/property_model.dart';
 import 'property_provider.dart';
 
-final favoritesProvider = StateNotifierProvider<FavoriteNotifier, AsyncValue<List<PropertyModel>>>((ref) {
-  return FavoriteNotifier(ref);
-});
+final favoritesProvider =
+    AsyncNotifierProvider<FavoriteNotifier, List<PropertyModel>>(
+  FavoriteNotifier.new,
+);
 
-class FavoriteNotifier extends StateNotifier<AsyncValue<List<PropertyModel>>> {
-  final Ref _ref;
+class FavoriteNotifier extends AsyncNotifier<List<PropertyModel>> {
+  @override
+  Future<List<PropertyModel>> build() async {
+    return _fetchFavorites();
+  }
 
-  FavoriteNotifier(this._ref) : super(const AsyncValue.loading()) {
-    fetchFavorites();
+  Future<List<PropertyModel>> _fetchFavorites() async {
+    final apiService = ref.read(apiServiceProvider);
+    final response = await apiService.get('/favorites');
+    final dynamic raw = response.data;
+    if (raw == null || raw is! List) return const [];
+    return (raw as List<dynamic>)
+        .map((item) => PropertyModel.fromJson(item['property']))
+        .toList();
   }
 
   Future<void> fetchFavorites() async {
     state = const AsyncValue.loading();
-    try {
-      final apiService = _ref.read(apiServiceProvider);
-      final response = await apiService.get('/favorites');
-      final List<dynamic> data = response.data;
-      state = AsyncValue.data(data.map((item) => PropertyModel.fromJson(item['property'])).toList());
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
-    }
+    state = await AsyncValue.guard(_fetchFavorites);
   }
 
   Future<bool> toggleFavorite(String propertyId) async {
     try {
-      final apiService = _ref.read(apiServiceProvider);
-      final response = await apiService.post('/favorites/toggle', data: {'propertyId': propertyId});
+      final apiService = ref.read(apiServiceProvider);
+      final response = await apiService.post(
+        '/favorites/toggle',
+        data: {'propertyId': propertyId},
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         await fetchFavorites();
         return true;
       }
       return false;
-    } catch (e) {
+    } catch (_) {
       return false;
     }
   }

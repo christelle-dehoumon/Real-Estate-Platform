@@ -47,6 +47,15 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/supervision', supervisionRoutes);
 app.use('/api/favorites', favoriteRoutes);
 
+// Global error handler to always return JSON (including Multer errors)
+app.use((err, req, res, next) => {
+    console.error(err);
+    const statusCode = err.status || (err.name === 'MulterError' ? 400 : 500);
+    res.status(statusCode).json({
+        message: err.message || 'Erreur serveur',
+    });
+});
+
 app.get('/', (req, res) => {
     res.send('Fasohabitat API is running');
 });

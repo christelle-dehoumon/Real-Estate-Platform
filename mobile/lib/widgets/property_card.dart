@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../models/property_model.dart';
 import '../core/constants/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -14,6 +15,10 @@ class PropertyCard extends ConsumerWidget {
   final VoidCallback? onTap;
 
   const PropertyCard({required this.property, this.onTap, super.key});
+
+  String get _imageUrl => property.images.isNotEmpty
+      ? property.images.first
+      : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -52,14 +57,42 @@ class PropertyCard extends ConsumerWidget {
             // Image Section
             Stack(
               children: [
-                CachedNetworkImage(
-                  imageUrl: property.images.isNotEmpty
-                      ? property.images.first
-                      : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                  height: 220,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                if (kIsWeb)
+                  Image.network(
+                    _imageUrl,
+                    height: 220,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 220,
+                      width: double.infinity,
+                      color: AppColors.background,
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.broken_image_outlined,
+                        color: AppColors.muted,
+                        size: 40,
+                      ),
+                    ),
+                  )
+                else
+                  CachedNetworkImage(
+                    imageUrl: _imageUrl,
+                    height: 220,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => Container(
+                      height: 220,
+                      width: double.infinity,
+                      color: AppColors.background,
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.broken_image_outlined,
+                        color: AppColors.muted,
+                        size: 40,
+                      ),
+                    ),
+                  ),
                 Positioned(
                   top: 16,
                   left: 16,

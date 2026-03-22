@@ -1,16 +1,31 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiService {
   final Dio _dio = Dio();
   final _storage = const FlutterSecureStorage();
 
-  // Base URL - Use 10.0.2.2 for Android Emulator, or your machine local IP
-  // static const String baseUrl = 'http://10.0.2.2:5000/api'; // Émulateur Android
-  static const String baseUrl = 'http://192.168.100.223:5000/api'; 
+  /// Base URL for the backend API.
+  ///
+  /// - Web: `http://localhost:5000/api` (browser runs on your machine)
+  /// - Android emulator: `http://10.0.2.2:5000/api`
+  /// - Real device: use your machine LAN IP, or override via `--dart-define`.
+  static const String _defaultApiBaseUrlWeb = 'http://localhost:5000/api';
+  static const String _defaultApiBaseUrlAndroidEmulator =
+      'http://10.0.2.2:5000/api';
+
+  static const String apiBaseUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: '',
+  );
 
   ApiService() {
-    _dio.options.baseUrl = baseUrl;
+    final resolvedBaseUrl = apiBaseUrl.isNotEmpty
+        ? apiBaseUrl
+        : (kIsWeb ? _defaultApiBaseUrlWeb : _defaultApiBaseUrlAndroidEmulator);
+
+    _dio.options.baseUrl = resolvedBaseUrl;
 
     // Configure validation status - accept all status codes don't throw exception
     _dio.options.validateStatus = (status) {
