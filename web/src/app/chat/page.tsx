@@ -1,10 +1,2 @@
-import { Suspense } from 'react';
-import ChatPageContent from './ChatPageContent';
-
-export default function ChatPage() {
-  return (
-    <Suspense fallback={<div>Chargement...</div>}>
-      <ChatPageContent />
-    </Suspense>
-  );
-}
+export const dynamic = 'force-dynamic';
+export { default } from './ChatPageContent';
