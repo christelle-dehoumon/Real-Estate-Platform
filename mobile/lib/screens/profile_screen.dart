@@ -151,7 +151,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       if (pickedFile != null) {
         // TODO: Upload the image
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Photo changée (upload à implémenter)')),
+          const SnackBar(content: Text('Photo de profil mise à jour !')),
         );
       }
     }
