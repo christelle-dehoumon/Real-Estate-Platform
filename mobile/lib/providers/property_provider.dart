@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/property_model.dart';
 import '../services/api_service.dart';
@@ -31,11 +33,52 @@ class PropertyNotifier extends StateNotifier<AsyncValue<List<PropertyModel>>> {
     }
   }
 
-  Future<bool> createProperty(Map<String, dynamic> propertyData) async {
+  Future<bool> createProperty(Map<String, dynamic> propertyData, {List<String>? imagePaths}) async {
     try {
       final apiService = _ref.read(apiServiceProvider);
-      final response = await apiService.post('/properties', data: propertyData);
+      dynamic requestData;
+
+      if (imagePaths != null && imagePaths.isNotEmpty) {
+        final Map<String, dynamic> formDataMap = {};
+        propertyData.forEach((key, value) {
+          if (value is Map || value is List) {
+            formDataMap[key] = jsonEncode(value);
+          } else {
+            formDataMap[key] = value.toString();
+          }
+        });
+
+        requestData = FormData.fromMap(formDataMap);
+
+        for (var path in imagePaths) {
+          requestData.files.add(
+            MapEntry(
+              'images',
+              await MultipartFile.fromFile(path),
+            ),
+          );
+        }
+      } else {
+        requestData = propertyData;
+      }
+
+      final response = await apiService.post('/properties', data: requestData);
       if (response.statusCode == 201) {
+        await fetchProperties();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('CREATE PROPERTY ERROR: $e');
+      return false;
+    }
+  }
+
+  Future<bool> deleteProperty(String id) async {
+    try {
+      final apiService = _ref.read(apiServiceProvider);
+      final response = await apiService.delete('/properties/$id');
+      if (response.statusCode == 200 || response.statusCode == 204) {
         await fetchProperties();
         return true;
       }

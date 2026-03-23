@@ -1,0 +1,119 @@
+﻿Analyzing mobile...
+
+warning - lib\providers\message_provider.dart:84:15 - Unnecessary cast. Try removing the cast. - unnecessary_cast
+warning - lib\providers\property_provider.dart:30:32 - Unnecessary cast. Try removing the cast. - unnecessary_cast
+warning - lib\widgets\main_layout.dart:18:11 - The value of the local variable 'isOwner' isn't used. Try removing the variable or using it. - unused_local_variable
+   info - lib\core\theme\app_theme.dart:29:13 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\main.dart:14:5 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\providers\property_provider.dart:72:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\screens\chat_screen.dart:115:54 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\chat_screen.dart:168:21 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\chat_screen.dart:210:33 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\chat_screen.dart:295:46 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\chat_screen.dart:302:41 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\chat_screen.dart:325:44 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\favorites_screen.dart:39:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\home_screen.dart:32:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\home_screen.dart:63:38 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\home_screen.dart:64:38 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\login_screen.dart:50:18 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\login_screen.dart:69:29 - Use 'const' literals as arguments to constructors of '@immutable' classes. Try adding 'const' before the literal. - prefer_const_literals_to_create_immutables
+   info - lib\screens\login_screen.dart:70:21 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\login_screen.dart:72:30 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\login_screen.dart:160:44 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\login_screen.dart:162:63 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\message_list_screen.dart:44:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\message_list_screen.dart:90:56 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\profile_screen.dart:87:32 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+   info - lib\screens\profile_screen.dart:88:40 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+   info - lib\screens\profile_screen.dart:118:30 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+   info - lib\screens\profile_screen.dart:119:17 - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext. - use_build_context_synchronously
+   info - lib\screens\profile_screen.dart:287:46 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\profile_screen.dart:320:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\property_details_screen.dart:41:18 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\property_details_screen.dart:199:29 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\property_details_screen.dart:298:35 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\property_details_screen.dart:302:44 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\property_details_screen.dart:324:39 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\property_details_screen.dart:369:50 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\property_details_screen.dart:371:69 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\property_details_screen.dart:381:22 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\publish_property_screen.dart:36:15 - The private field _images could be 'final'. Try making the field 'final'. - prefer_final_fields
+   info - lib\screens\publish_property_screen.dart:116:32 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+   info - lib\screens\publish_property_screen.dart:124:30 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+   info - lib\screens\publish_property_screen.dart:137:42 - The type of the right operand ('String') isn't a subtype or a supertype of the left operand ('UserRole?'). Try changing one or both of the operands. - unrelated_type_equality_checks
+   info - lib\screens\publish_property_screen.dart:185:26 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\publish_property_screen.dart:188:15 - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\publish_property_screen.dart:264:23 - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\publish_property_screen.dart:280:23 - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\publish_property_screen.dart:395:60 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\publish_property_screen.dart:457:54 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\register_screen.dart:81:18 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\screens\register_screen.dart:221:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\register_screen.dart:256:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\register_screen.dart:293:44 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\register_screen.dart:295:63 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\search_screen.dart:152:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\welcome_screen.dart:46:37 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\welcome_screen.dart:47:37 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\welcome_screen.dart:48:37 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\screens\welcome_screen.dart:105:47 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\services\api_service.dart:27:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:28:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:29:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:33:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:34:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:38:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:39:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:40:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:76:9 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\api_service.dart:79:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:12:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:23:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:24:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:30:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:32:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:38:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:39:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:52:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:65:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:83:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:84:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:90:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:92:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:98:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:99:11 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:110:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:117:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:120:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:126:9 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:135:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:150:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:153:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:163:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:170:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:176:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:186:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:193:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:196:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:207:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:214:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\services\auth_service.dart:225:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\widgets\main_layout.dart:18:42 - The type of the right operand ('String') isn't a subtype or a supertype of the left operand ('UserRole?'). Try changing one or both of the operands. - unrelated_type_equality_checks
+   info - lib\widgets\premium_components.dart:17:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\premium_components.dart:140:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\premium_components.dart:199:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\premium_components.dart:257:46 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\premium_components.dart:280:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\premium_components.dart:338:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\premium_components.dart:383:25 - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation. - prefer_const_constructors
+   info - lib\widgets\premium_components.dart:386:25 - Use 'const' literals as arguments to constructors of '@immutable' classes. Try adding 'const' before the literal. - prefer_const_literals_to_create_immutables
+   info - lib\widgets\premium_components.dart:407:36 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\premium_components.dart:408:36 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\premium_components.dart:409:36 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\property_card.dart:42:35 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\property_card.dart:69:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\property_card.dart:87:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\property_card.dart:111:47 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+115 issues found.

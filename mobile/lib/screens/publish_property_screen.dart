@@ -100,9 +100,10 @@ class _PublishPropertyScreenState extends ConsumerState<PublishPropertyScreen> {
       };
 
       try {
+        final imagePaths = _images.map((img) => img.path).toList();
         final success = await ref
             .read(propertiesProvider.notifier)
-            .createProperty(propertyData);
+            .createProperty(propertyData, imagePaths: imagePaths);
         if (success && mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

@@ -31,22 +31,22 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('faso_user');
+      if (stored) {
+        try {
+          return JSON.parse(stored);
+        } catch {
+          localStorage.removeItem('faso_user');
+        }
+      }
+    }
+    return null;
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-
-  // Restore session from localStorage on mount
-  useEffect(() => {
-    const stored = localStorage.getItem('faso_user');
-    if (stored) {
-      try {
-        setUser(JSON.parse(stored));
-      } catch {
-        localStorage.removeItem('faso_user');
-      }
-    }
-  }, []);
 
   const login = async (email: string, password: string) => {
     setLoading(true);
