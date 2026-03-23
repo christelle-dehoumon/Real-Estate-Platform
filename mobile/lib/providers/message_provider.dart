@@ -80,7 +80,7 @@ class MessageNotifier extends Notifier<MessageState> {
   /// Calls GET /messages/:userId on the backend.
   Future<List<MessageModel>> fetchConversation(String otherUserId) async {
     try {
-      final apiService = _ref.read(apiServiceProvider);
+      final apiService = ref.read(apiServiceProvider);
       final response = await apiService.get('/messages/$otherUserId');
       final dynamic raw = response.data;
       if (raw == null || raw is! List) return [];
