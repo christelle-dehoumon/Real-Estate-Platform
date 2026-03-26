@@ -1,7 +1,6 @@
 import '../models/user_model.dart';
 import 'api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:dio/dio.dart';
 
 class AuthService {
   final ApiService _apiService = ApiService();
@@ -206,24 +205,6 @@ class AuthService {
     } catch (e) {
       print('[AuthService] Delete account error: $e');
       rethrow;
-    }
-  }
-
-  Future<bool> uploadProfilePhoto(String imagePath) async {
-    try {
-      print('[AuthService] Uploading profile photo');
-      final formData = FormData.fromMap({
-        'photo': await MultipartFile.fromFile(imagePath),
-      });
-      final response = await _apiService.put('/auth/profile', data: formData);
-
-      if (response.statusCode == 200) {
-        return true;
-      }
-      return false;
-    } catch (e) {
-      print('[AuthService] Upload photo error: $e');
-      return false;
     }
   }
 }

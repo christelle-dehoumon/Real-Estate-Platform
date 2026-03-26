@@ -116,7 +116,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               final success = await ref.read(authProvider.notifier).deleteAccount();
               if (success && mounted) {
                 Navigator.of(context).pop();
-                context.go('/login');
+                context.go('/');
               }
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -149,21 +149,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     if (source != null) {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
-        final success = await ref.read(authProvider.notifier).uploadProfilePhoto(pickedFile.path);
-        if (mounted) {
-          if (success) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Photo de profil mise à jour avec succès')),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(ref.read(authProvider).error ?? 'Erreur lors de la mise à jour de la photo'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        }
+        // TODO: Upload the image
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Photo changée (upload à implémenter)')),
+        );
       }
     }
   }
@@ -264,10 +253,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout_rounded, color: Colors.redAccent),
-            onPressed: () {
-              ref.read(authProvider.notifier).logout();
-              context.go('/login');
-            },
+            onPressed: () => ref.read(authProvider.notifier).logout(),
           ),
         ],
       ),

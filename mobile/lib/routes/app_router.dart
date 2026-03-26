@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/login_screen.dart';
@@ -11,6 +12,7 @@ import '../screens/message_list_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/property_details_screen.dart';
 import '../screens/chat_screen.dart';
+import '../providers/auth_provider.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorSearchKey = GlobalKey<NavigatorState>(
@@ -47,13 +49,9 @@ final goRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: '/chat',
+      path: '/chat/:id',
       builder: (context, state) {
-        final id = state.uri.queryParameters['id'];
-        if (id == null || id.isEmpty) {
-          // If no id provided, go back to messages
-          return const MessageListScreen();
-        }
+        final id = state.pathParameters['id']!;
         return ChatScreen(otherUserId: id);
       },
     ),
