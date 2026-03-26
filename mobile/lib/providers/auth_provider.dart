@@ -107,6 +107,23 @@ class AuthNotifier extends Notifier<AuthState> {
     }
   }
 
+  Future<bool> uploadProfilePhoto(String imagePath) async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final success = await _authService.uploadProfilePhoto(imagePath);
+      if (success) {
+        final user = await _authService.getProfile();
+        state = state.copyWith(user: user, isLoading: false);
+      } else {
+        state = state.copyWith(isLoading: false, error: 'Upload failed');
+      }
+      return success;
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: e.toString());
+      return false;
+    }
+  }
+
   Future<bool> deleteAccount() async {
     try {
       final api = ref.read(apiServiceProvider);

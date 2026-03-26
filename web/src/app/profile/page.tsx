@@ -23,7 +23,10 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      const stored = localStorage.getItem('faso_user');
+      if (!stored) {
+        router.push('/login');
+      }
       return;
     }
     fetchData();
@@ -76,11 +79,37 @@ export default function ProfilePage() {
           body: formData
         });
         if (res.ok) {
+          const updatedUser = await res.json();
+          localStorage.setItem('faso_user', JSON.stringify(updatedUser));
           window.location.reload();
         }
       } catch (err) {
         console.error(err);
       }
+    }
+  };
+
+  const handleDeletePhoto = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!user) return;
+    if (!confirm('Voulez-vous supprimer votre photo de profil ?')) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('removePhoto', 'true');
+
+      const res = await fetch(`${API_URL}/api/auth/profile`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${user.token}` },
+        body: formData
+      });
+      if (res.ok) {
+        const updatedUser = await res.json();
+        localStorage.setItem('faso_user', JSON.stringify(updatedUser));
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -151,26 +180,37 @@ export default function ProfilePage() {
           <aside className="w-full lg:w-1/4">
             <div className="sticky top-40 space-y-12">
               <div className="flex flex-col items-center text-center space-y-8">
-                <div
-                  className="relative group cursor-pointer"
-                  onClick={handlePhotoClick}
-                >
-                  <div className="absolute inset-0 border border-accent/40 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-20" />
-                  <img
-                    src={user?.photoUrl ? (user.photoUrl.startsWith('http') ? user.photoUrl : `${API_URL}${user.photoUrl}`) : `https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=0D8ABC&color=fff`}
-                    alt="Profile"
-                    className="w-36 h-36 rounded-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-700 border-2 border-border p-1.5 relative z-10"
-                  />
-                  <div className="absolute inset-1.5 bg-accent/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
-                    <Camera className="text-white w-6 h-6" />
+                <div className="relative">
+                  <div
+                    className="relative group cursor-pointer"
+                    onClick={handlePhotoClick}
+                  >
+                    <div className="absolute inset-0 border border-accent/40 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-20" />
+                    <img
+                      src={user?.photoUrl ? (user.photoUrl.startsWith('http') ? user.photoUrl : `${API_URL}${user.photoUrl}`) : `https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=0D8ABC&color=fff`}
+                      alt="Profile"
+                      className="w-36 h-36 rounded-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-700 border-2 border-border p-1.5 relative z-10"
+                    />
+                    <div className="absolute inset-1.5 bg-accent/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
+                      <Camera className="text-white w-6 h-6" />
+                    </div>
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handlePhotoChange}
+                    />
                   </div>
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    className="hidden"
-                    accept="image/*"
-                    onChange={handlePhotoChange}
-                  />
+                  {user?.photoUrl && (
+                    <button
+                      onClick={handleDeletePhoto}
+                      className="absolute bottom-2 right-2 p-3 bg-white text-red-500 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-red-50 hover:text-red-600 hover:scale-110 transition-all z-30"
+                      title="Supprimer la photo"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-3xl font-serif italic text-foreground">{user?.name}</h2>

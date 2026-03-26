@@ -125,6 +125,39 @@ class PropertyDetailsScreen extends ConsumerWidget {
                     ),
                   ),
                   _buildCircleAction(Icons.share_rounded, () {}),
+                  if (authState.user?.id == property.ownerId)
+                    _buildCircleAction(Icons.delete_outline, () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: const Text('Supprimer'),
+                          content: const Text('Voulez-vous vraiment supprimer cette publication ?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, false),
+                              child: const Text('Annuler'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, true),
+                              child: const Text('Supprimer', style: TextStyle(color: Colors.red)),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirm == true && context.mounted) {
+                        final success = await ref.read(propertiesProvider.notifier).deleteProperty(property.id);
+                        if (success && context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Publication supprimée')),
+                          );
+                          GoRouter.of(context).pop();
+                        } else if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Erreur lors de la suppression'), backgroundColor: Colors.red),
+                          );
+                        }
+                      }
+                    }),
                   const SizedBox(width: 8),
                 ],
               ),

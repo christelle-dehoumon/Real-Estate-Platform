@@ -62,7 +62,9 @@ const getConversationsList = async (req, res) => {
         const conversationsMap = new Map();
 
         messages.forEach(msg => {
+            if (!msg.sender || !msg.receiver) return; // Skip messages with deleted users
             const partner = msg.sender._id.toString() === userId.toString() ? msg.receiver : msg.sender;
+            if (!partner) return;
             const partnerId = partner._id.toString();
 
             if (!conversationsMap.has(partnerId)) {
