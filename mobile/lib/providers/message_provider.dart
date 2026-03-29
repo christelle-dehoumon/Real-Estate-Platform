@@ -52,8 +52,7 @@ class MessageNotifier extends Notifier<MessageState> {
         state = state.copyWith(messages: const AsyncValue.data([]));
         return;
       }
-      final messagesList = (raw as List<dynamic>)
-          .map((item) => MessageModel.fromJson(item))
+      final messagesList = raw.map((item) => MessageModel.fromJson(item))
           .toList();
 
       state = state.copyWith(messages: AsyncValue.data(messagesList));

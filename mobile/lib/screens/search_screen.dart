@@ -79,7 +79,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               onChanged: (value) {
                 ref
                     .read(searchFilterProvider.notifier)
-                    .update((state) => {...state, 'city': value});
+                    .update({'city': value});
               },
             ),
           ),
@@ -147,7 +147,7 @@ class PropertyTypeFilters extends ConsumerWidget {
               onSelected: (selected) {
                 ref
                     .read(searchFilterProvider.notifier)
-                    .update((state) => {...state, 'type': types[index]});
+                    .update({'type': types[index]});
               },
               selectedColor: AppColors.primary.withOpacity(0.1),
               checkmarkColor: AppColors.primary,

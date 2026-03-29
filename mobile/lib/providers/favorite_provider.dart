@@ -18,8 +18,7 @@ class FavoriteNotifier extends AsyncNotifier<List<PropertyModel>> {
     final response = await apiService.get('/favorites');
     final dynamic raw = response.data;
     if (raw == null || raw is! List) return const [];
-    return (raw as List<dynamic>)
-        .map((item) => PropertyModel.fromJson(item['property']))
+    return raw.map((item) => PropertyModel.fromJson(item['property']))
         .toList();
   }
 

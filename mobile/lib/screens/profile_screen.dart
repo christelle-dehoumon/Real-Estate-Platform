@@ -159,8 +159,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   void _showMyListings() {
     // Navigate to search screen with owner filter
-    ref.read(searchFilterProvider.notifier).update((state) => {
-      ...state,
+    ref.read(searchFilterProvider.notifier).update({
       'owner': ref.read(authProvider).user?.id ?? '',
     });
     context.go('/search');

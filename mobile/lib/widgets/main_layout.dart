@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../core/constants/app_colors.dart';
 import '../providers/message_provider.dart';
 import '../providers/auth_provider.dart';
+import '../models/user_model.dart';
 
 class MainLayout extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
@@ -15,7 +16,7 @@ class MainLayout extends ConsumerWidget {
     final messageState = ref.watch(messagesProvider);
     final authState = ref.watch(authProvider);
     final unreadCount = messageState.unreadCount;
-    final isOwner = authState.user?.role == 'owner';
+    final isOwner = authState.user?.role == UserRole.owner;
 
     return Scaffold(
       body: navigationShell,
@@ -34,10 +35,11 @@ class MainLayout extends ConsumerWidget {
             icon: Icon(Icons.favorite_border),
             label: 'Favorites',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined),
-            label: 'Publish',
-          ),
+          if (isOwner)
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_outlined),
+              label: 'Publish',
+            ),
           BottomNavigationBarItem(
             icon: Stack(
               children: [
