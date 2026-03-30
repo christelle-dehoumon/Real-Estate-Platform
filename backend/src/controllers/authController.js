@@ -138,7 +138,7 @@ const updateUserProfile = async (req, res) => {
         }
 
         if (req.file) {
-            user.photoUrl = `/uploads/${req.file.filename}`;
+            user.photoUrl = req.file.path;
         } else if (req.body.removePhoto === 'true' || req.body.removePhoto === true) {
             user.photoUrl = '';
         }

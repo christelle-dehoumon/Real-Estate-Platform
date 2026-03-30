@@ -225,7 +225,7 @@ export default function PropertyDetails() {
                   scrolling="no"
                   marginHeight={0}
                   marginWidth={0}
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=-5.5,9.0,2.5,15.5&layer=mapnik&marker=12.3714,1.5242`}
+                  src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${property.location?.city || "Ouagadougou"},Burkina+Faso&zoom=15`}
                   className="grayscale hover:grayscale-0 transition-all duration-1000"
                 ></iframe>
               </div>

@@ -11,7 +11,7 @@ const createProperty = async (req, res) => {
 
         if (req.files) {
             if (req.files.images) {
-                images = req.files.images.map(file => `/uploads/${file.filename}`);
+                images = req.files.images.map(file => file.path);
             }
             if (req.files.idCard) {
                 idCard = `/uploads/${req.files.idCard[0].filename}`;

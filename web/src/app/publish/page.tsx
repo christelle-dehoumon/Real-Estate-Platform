@@ -320,7 +320,7 @@ export default function PublishPage() {
                   height="450"
                   frameBorder="0"
                   scrolling="no"
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=-5.5,9.0,2.5,15.5&layer=mapnik&marker=12.3714,1.5242`}
+                  src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${formData.city || "Ouagadougou"},Burkina+Faso&zoom=14`}
                   className="grayscale hover:grayscale-0 transition-all duration-1000"
                 ></iframe>
                 <div className="absolute bottom-6 left-6 z-20 bg-white p-4 border border-border shadow-sm rounded-lg">
