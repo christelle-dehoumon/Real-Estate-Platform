@@ -225,7 +225,7 @@ export default function PropertyDetails() {
                   scrolling="no"
                   marginHeight={0}
                   marginWidth={0}
-                  src={`https://maps.google.com/maps?width=100%25&height=400&hl=fr&q=${encodeURIComponent(property.location?.address + ", " + property.location?.city + ", Burkina Faso")}&t=&z=15&ie=UTF8&iwloc=B&output=embed`}
+                  src={`https://www.openstreetmap.org/export/embed.html?bbox=-5.5,9.0,2.5,15.5&layer=mapnik&marker=12.3714,1.5242`}
                   className="grayscale hover:grayscale-0 transition-all duration-1000"
                 ></iframe>
               </div>
